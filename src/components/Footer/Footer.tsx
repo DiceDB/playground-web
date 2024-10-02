@@ -1,76 +1,52 @@
-// icons
 import { Button } from "@mui/material";
 import { Twitter } from "@mui/icons-material";
 import GitHub from "@mui/icons-material/GitHub";
 import People from "@mui/icons-material/People";
+import Link from "next/link";
 
 export default function Footer() {
   return (
     <footer className="bg-white border-t border-gray-100 py-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-gray-500 font-semibold mb-4">DiceDB</h3>
-            <Button className="w-full mb-2 bg-red-600 hover:bg-red-700 text-white">
-              Get Started →
-            </Button>
-            <Button className="w-full mb-2 border-2 border-gray-700 bg-blue-50 hover:text-blue text-black hover:text-blue-600">
-              <GitHub className="mr-2 h-4 w-4" /> GitHub (4k+)
-            </Button>
+        <div className="flex flex-col items-center text-center">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">Contact Us</h2>
+          <p className="text-gray-600 mb-8 max-w-md">
+            Have questions or need support? We&apos;re here to help. Reach out
+            to us through any of the following channels.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <Link
+              href="https://discord.com/invite/6r8uXWtXh7"
+              passHref
+              legacyBehavior
+            >
+              <Button
+                variant="contained"
+                startIcon={<People />}
+                sx={{ backgroundColor: "#e60001" }}
+              >
+                Community Forum
+              </Button>
+            </Link>
           </div>
-
-          <div>
-            <h3 className="text-gray-500 font-semibold mb-4">Developers</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-gray-600 hover:text-gray-900">
-                  Quickstart
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-600 hover:text-gray-900">
-                  Commands
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-600 hover:text-gray-900">
-                  Examples
-                </a>
-              </li>
-            </ul>
+          <div className="flex space-x-6">
+            <Link
+              href="https://x.com/thedicedb"
+              className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
+            >
+              <Twitter className="h-6 w-6" />
+              <span className="sr-only">Twitter</span>
+            </Link>
+            <Link
+              href="https://github.com/dicedb/dice"
+              className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
+            >
+              <GitHub className="h-6 w-6" />
+              <span className="sr-only">GitHub</span>
+            </Link>
           </div>
-
-          <div>
-            <h3 className="text-gray-500 font-semibold mb-4">Examples</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-gray-600 hover:text-gray-900">
-                  Real-time Leaderboard
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-gray-500 font-semibold mb-4">Us and Socials</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-gray-600 hover:text-gray-900">
-                  Contact Us
-                </a>
-              </li>
-            </ul>
-            <div className="flex space-x-4 mt-4">
-              <a href="#" className="text-gray-400 hover:text-gray-600">
-                <People className="h-6 w-6" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-gray-600">
-                <Twitter className="h-6 w-6" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-gray-600">
-                <GitHub className="h-6 w-6" />
-              </a>
-            </div>
+          <div className="mt-8 text-sm text-gray-500">
+            © 2024 DiceDB. All rights reserved.
           </div>
         </div>
       </div>

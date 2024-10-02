@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { Clipboard } from "lucide-react";
 import { DiceCmdMeta } from "@/data/command";
 
