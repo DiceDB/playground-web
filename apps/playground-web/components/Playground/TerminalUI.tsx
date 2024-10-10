@@ -20,7 +20,7 @@ export function TerminalUI() {
           </div>
         </div>
         <div className="h-64 md:h-[30rem] bg-gray-100 rounded-lg overflow-hidden shadow-md">
-          <Shell decreaseCommandsLeft={decreaseCommandsLeft} />
+          <Shell/>
         </div>
       </div>
       <TerminalCounter commandsLeft={commandsLeft} />

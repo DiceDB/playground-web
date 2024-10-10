@@ -8,7 +8,7 @@ interface ShellProps {
   decreaseCommandsLeft: () => void;
 }
 
-export default function Shell({ decreaseCommandsLeft }: ShellProps) {
+export default function Shell({ }: ShellProps) {
   const {
     handleInputChange,
     handleKeyDown,
@@ -16,7 +16,7 @@ export default function Shell({ decreaseCommandsLeft }: ShellProps) {
     inputRef,
     output,
     command,
-  } = useShell(decreaseCommandsLeft);
+  } = useShell();
   return (
     <div
       ref={terminalRef}

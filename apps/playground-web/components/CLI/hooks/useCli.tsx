@@ -13,6 +13,7 @@ export const useCli = (decreaseCommandsLeft: () => void) => {
   //Initialise the command history with sessionStorage
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
+  const [newCommandsLeft, setNewCommandsLeft] = useState<number>(1000);
 
   // useRefs
   const terminalRef = useRef<HTMLDivElement>(null);
@@ -27,7 +28,7 @@ export const useCli = (decreaseCommandsLeft: () => void) => {
         `(error) ERR unknown command '${commandName}'`,
       ]);
     } else {
-      handleCommand({ command, setOutput }); // Execute if not blocklisted
+      handleCommand({ command, setOutput, setNewCommandsLeft }); // Execute if not blocklisted
     }
 
     setCommand(''); // Clear input

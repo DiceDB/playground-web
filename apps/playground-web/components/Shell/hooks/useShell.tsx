@@ -5,7 +5,7 @@ import { useState, useEffect, useRef, KeyboardEvent, ChangeEvent } from 'react';
 import { handleCommand } from '@/shared/utils/shellUtils';
 import blocklistedCommands from '@/shared/utils/blocklist';
 
-export const useShell = (decreaseCommandsLeft: () => void) => {
+export const useShell = () => {
   // states
   const [command, setCommand] = useState('');
   const [output, setOutput] = useState<string[]>([]);
@@ -13,6 +13,7 @@ export const useShell = (decreaseCommandsLeft: () => void) => {
   // Initialise the command history with sessionStorage
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
+  const [newCommandsLeft, setNewCommandsLeft] = useState<number>(1000);
 
   // useRefs
   const terminalRef = useRef<HTMLDivElement>(null);
@@ -32,11 +33,10 @@ export const useShell = (decreaseCommandsLeft: () => void) => {
         `(error) ERR unknown command '${commandName}'`,
       ]);
     } else {
-      handleCommand({ command, setOutput }); // Execute if not blocklisted
+      handleCommand({ command, setOutput, setNewCommandsLeft }); // Execute if not blocklisted
     }
 
     setCommand(''); // Clear input
-    decreaseCommandsLeft(); // Call to update remaining commands
   };
 
   useEffect(() => {
