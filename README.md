@@ -10,7 +10,6 @@ A monorepo is a single repository that contains multiple projects. This allows u
 
 This repository is an amalgamation of all the tools and applications that make DiceDB fun and easy to use in the real world. The name is a nod to this amalgamation, and inspired by the [alloy](https://en.wikipedia.org/wiki/Alloy).
 
-
 ## What's inside?
 
 This monorepo includes the following packages/apps:
@@ -29,6 +28,7 @@ This monorepo includes the following packages/apps:
 ### Prerequisites
 
 Ensure you have the following installed:
+
 - node.js (v18.17.0 or later)
 - pnpm (v9.10.0 or later)
 
@@ -42,8 +42,6 @@ npm install -g pnpm@9.10.0
 ```
 
 > If you're unfamiliar with pnpm, it’s an alternative package manager that is faster and more efficient than npm. Learn more about pnpm [here](https://pnpm.io/).
-
-
 
 ### Installation
 
@@ -102,7 +100,6 @@ These commands will not only start the development server for the package reques
 
 > We also have a `pnpm dev:playground` alias that does the same thing as `pnpm dev --filter @dicedb/playground-web` for convenience.
 
-
 ### Testing
 
 To run tests for all apps and packages, run the following command:
@@ -121,7 +118,13 @@ cd alloy
 pnpm test:watch
 ```
 
+### Integration Test
 
+To run E2E test, run the following command:
+
+```
+pnpm test:e2e
+```
 
 ### Formatting
 
@@ -144,6 +147,7 @@ pnpm lint
 ## The Monorepo Structure
 
 The monorepo is divided into 3 main directories:
+
 - `apps`: contains all the applications i.e. deployable units
 - `packages`: contains all the packages i.e. reusable code across the apps
 - `tooling`: contains all the configurations and tooling used across the monorepo

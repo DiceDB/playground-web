@@ -27,7 +27,7 @@ export default function Shell({ decreaseCommandsLeft }: ShellProps) {
       {output.map((line, index) => (
         <div
           key={index}
-          data-testid="terminal-output"
+          data-testid={`terminal-output-${index + 1}`}
           className="text-white p-1"
         >
           {line.split('\n').map((subLine, subIndex, arr) => (

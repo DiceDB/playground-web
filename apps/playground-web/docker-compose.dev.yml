@@ -15,7 +15,7 @@ services:
     depends_on:
       - dicedb
     environment:
-      - DICE_ADDR=dicedb:7379
+      - DICEDB_ADDR=dicedb:7379
 
   frontend:
     build:

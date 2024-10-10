@@ -9,7 +9,8 @@
     "lint": "turbo lint",
     "format": "prettier -c ./.prettierrc --write \"**/*.{js,jsx,ts,tsx,json,css}\"",
     "check:format": "prettier -c ./.prettierrc \"**/*.{js,jsx,ts,tsx,json,css}\"",
-    "test": "turbo test"
+    "test": "turbo test",
+    "test:e2e": "turbo test:e2e"
   },
   "devDependencies": {
     "prettier": "^3.2.5",

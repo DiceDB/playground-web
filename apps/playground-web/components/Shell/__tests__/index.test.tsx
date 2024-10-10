@@ -60,7 +60,7 @@ describe('Shell Component', () => {
     const { cliInputElement, user, getByTestId } = setupTest();
 
     await user.type(cliInputElement, 'EXEC{enter}');
-    const terminalOutputElement = getByTestId('terminal-output');
+    const terminalOutputElement = getByTestId('terminal-output-1');
     expect(terminalOutputElement).toHaveTextContent(
       "(error) ERR unknown command 'EXEC'",
     );

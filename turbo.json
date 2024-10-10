@@ -24,6 +24,7 @@
     "test:watch": {
       "cache": false,
       "persistent": true
-    }
+    },
+    "test:e2e": {}
   }
 }
