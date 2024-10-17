@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { Twitter } from '@mui/icons-material';
 import GitHub from '@mui/icons-material/GitHub';
@@ -53,34 +51,34 @@ export default function Footer() {
             <h3 className="text-gray-500 font-semibold mb-4">Developers</h3>
             <ul className="space-y-2">
               <li>
-                <a
+                <Link
                   href="https://dicedb.io/get-started/installation"
                   target="_blank"
                   className="text-gray-600 hover:text-gray-900"
                   data-testid="quickstart-link"
                 >
                   Quickstart
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="https://dicedb.io/commands/get"
                   target="_blank"
                   className="text-gray-600 hover:text-gray-900"
                   data-testid="commands-link"
                 >
                   Commands
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="https://github.com/DiceDB/dice/tree/master/examples/leaderboard-go"
                   target="_blank"
                   className="text-gray-600 hover:text-gray-900"
                   data-testid="examples-link"
                 >
                   Examples
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -89,14 +87,14 @@ export default function Footer() {
             <h3 className="text-gray-500 font-semibold mb-4">Examples</h3>
             <ul className="space-y-2">
               <li>
-                <a
+                <Link
                   href="https://github.com/DiceDB/dice/tree/master/examples/leaderboard-go"
                   target="_blank"
                   className="text-gray-600 hover:text-gray-900"
                   data-testid="leaderboard-link"
                 >
                   Real-time Leaderboard
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -105,18 +103,18 @@ export default function Footer() {
             <h3 className="text-gray-500 font-semibold mb-4">Us and Socials</h3>
             <ul className="space-y-2">
               <li>
-                <a
+                <Link
                   href="mailto:arpit@dicedb.io"
                   target="_blank"
                   className="text-gray-600 hover:text-gray-900"
                   data-testid="contact-link"
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
             <div className="space-x-4 mt-4 items-center justify-items-center">
-              <a
+              <Link
                 href="https://discord.gg/6r8uXWtXh7"
                 target="_blank"
                 className="text-gray-400 hover:text-gray-600"
@@ -124,8 +122,8 @@ export default function Footer() {
                 data-testid="people-icon-link"
               >
                 <People className="h-6 w-6" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="https://twitter.com/thedicedb"
                 target="_blank"
                 className="text-gray-400 hover:text-gray-600"
@@ -133,8 +131,8 @@ export default function Footer() {
                 data-testid="twitter-icon-link"
               >
                 <Twitter className="h-6 w-6" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="https://github.com/dicedb/dice"
                 target="_blank"
                 className="text-gray-400 hover:text-gray-600"
@@ -142,7 +140,7 @@ export default function Footer() {
                 data-testid="github-icon-link"
               >
                 <GitHub className="h-6 w-6" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
