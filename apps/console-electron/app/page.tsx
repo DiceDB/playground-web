@@ -1,3 +1,4 @@
+import { Button } from '@dicedb/ui/button';
 import Link from 'next/link';
 
 export default function Home() {
@@ -13,7 +14,9 @@ export default function Home() {
           src="https://avatars.githubusercontent.com/u/112580013?s=48&v=4"
           alt="logo"
         />
-        <Link href="/dashboard">Home</Link>
+        <Button variant="default">
+          <Link href="/dashboard">Home</Link>
+        </Button>
       </main>
     </div>
   );

@@ -4,8 +4,10 @@
   "scripts": {
     "build": "turbo build",
     "build:playground": "turbo build --filter=@dicedb/playground-web --ui stream",
+    "build:console": "turbo build --filter=@dicedb/console-electron --ui stream",
     "dev": "turbo dev",
     "dev:playground": "turbo dev --filter=@dicedb/playground-web --ui stream",
+    "dev:console": "turbo dev --filter=@dicedb/console-electron --ui stream",
     "lint": "turbo lint",
     "format": "prettier -c ./.prettierrc --write \"**/*.{js,jsx,ts,tsx,json,css}\"",
     "check:format": "prettier -c ./.prettierrc \"**/*.{js,jsx,ts,tsx,json,css}\"",
