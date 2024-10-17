@@ -5,10 +5,10 @@
 import { useShell } from './hooks/useShell';
 
 interface ShellProps {
-  decreaseCommandsLeft: () => void;
+  onCommandExecuted: (commandsLeft: number) => void;
 }
 
-export default function Shell({ decreaseCommandsLeft }: ShellProps) {
+export default function Shell({ onCommandExecuted }: ShellProps) {
   const {
     handleInputChange,
     handleKeyDown,
@@ -16,7 +16,7 @@ export default function Shell({ decreaseCommandsLeft }: ShellProps) {
     inputRef,
     output,
     command,
-  } = useShell(decreaseCommandsLeft);
+  } = useShell(onCommandExecuted);
   return (
     <div
       ref={terminalRef}

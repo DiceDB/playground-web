@@ -2,10 +2,15 @@
 
 import { executeShellCommandOnServer } from '@/lib/api';
 import { CommandHandler } from '@/types';
+import { handleResult } from '@/shared/utils/commonUtils';
 
-export const handleCommand = async ({ command, setOutput }: CommandHandler) => {
+export const handleCommand = async ({
+  command,
+  setOutput,
+  onCommandExecuted,
+}: CommandHandler) => {
   const newOutput = `dice > ${command}`;
-  let result: string;
+  let result: any;
 
   const { cmd, args } = parseCommand(command);
 
@@ -14,7 +19,7 @@ export const handleCommand = async ({ command, setOutput }: CommandHandler) => {
   }
   try {
     result = await executeShellCommandOnServer(cmd, args);
-    setOutput((prevOutput) => [...prevOutput, newOutput, result]);
+    handleResult({ result, newOutput, setOutput, onCommandExecuted });
   } catch (error: unknown) {
     console.error('Error executing command:', error);
     result = 'Error executing command';

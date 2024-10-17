@@ -5,7 +5,7 @@ import { useState, useEffect, useRef, KeyboardEvent, ChangeEvent } from 'react';
 import { handleCommand } from '@/shared/utils/shellUtils';
 import blocklistedCommands from '@/shared/utils/blocklist';
 
-export const useShell = (decreaseCommandsLeft: () => void) => {
+export const useShell = (onCommandExecuted: (commandsLeft: number) => void) => {
   // states
   const [command, setCommand] = useState('');
   const [output, setOutput] = useState<string[]>([]);
@@ -32,11 +32,10 @@ export const useShell = (decreaseCommandsLeft: () => void) => {
         `(error) ERR unknown command '${commandName}'`,
       ]);
     } else {
-      handleCommand({ command, setOutput }); // Execute if not blocklisted
+      handleCommand({ command, setOutput, onCommandExecuted }); // Execute if not blocklisted
     }
 
     setCommand(''); // Clear input
-    decreaseCommandsLeft(); // Call to update remaining commands
   };
 
   useEffect(() => {

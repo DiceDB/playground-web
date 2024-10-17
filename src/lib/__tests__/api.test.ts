@@ -1,5 +1,6 @@
 import { executeShellCommandOnServer } from '../api';
 import { WebService } from '@/services/webServices';
+import { handleCommand } from '@/shared/utils/cliUtils';
 
 // Mock WebService
 jest.mock('@/services/webServices', () => ({
@@ -89,5 +90,27 @@ describe('executeShellCommandOnServer', () => {
       mockCmdOptions,
     );
     expect(result).toEqual('Some Response');
+  });
+
+  it('should call onCommandExecuted with (1000) for GET command', async () => {
+    const command = 'GET testKey';
+    const mockResult = {
+      body: { data: 'mockData' },
+      headers: { 'x-ratelimit-remaining': 1000 },
+    }; // Updated mock result
+    (executeShellCommandOnServer as jest.Mock).mockResolvedValueOnce(
+      mockResult,
+    ); // Mock the API response
+
+    const setOutputMock = jest.fn();
+    const onCommandExecutedMock = jest.fn();
+
+    await handleCommand({
+      command,
+      setOutput: setOutputMock,
+      onCommandExecuted: onCommandExecutedMock,
+    });
+
+    expect(onCommandExecutedMock).toHaveBeenCalledWith(1000);
   });
 });

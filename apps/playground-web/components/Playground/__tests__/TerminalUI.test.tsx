@@ -4,17 +4,16 @@ import userEvent from '@testing-library/user-event';
 import { TerminalUI } from '../TerminalUI';
 import { formatTime } from '@/shared/utils/commonUtils';
 
+// Shared variable to store initialCommandsLeft
+let sharedInitialCommandsLeft = 1000;
+
 jest.mock('@/shared/hooks/useTimer', () => ({
   useTimer: jest.fn(() => ({ timeLeft: 15 * 60 })), // Mock 15 minutes
 }));
 
-jest.mock('@/shared/utils/commonUtils', () => ({
-  formatTime: jest.fn(
-    (seconds) => `${Math.floor(seconds / 60)}:${seconds % 60}`,
-  ),
-}));
-
 const setupTest = (initialCommandsLeft = 1000) => {
+  sharedInitialCommandsLeft = initialCommandsLeft;
+
   const user = userEvent.setup();
   const utils = render(
     <TerminalUI initialCommandsLeft={initialCommandsLeft} />,
@@ -38,6 +37,21 @@ const setupTest = (initialCommandsLeft = 1000) => {
     ...utils,
   };
 };
+
+jest.mock('@/shared/utils/commonUtils', () => ({
+  formatTime: jest.fn(
+    (seconds) => `${Math.floor(seconds / 60)}:${seconds % 60}`,
+  ),
+  handleResult: jest.fn(
+    ({ result, newOutput, setOutput, onCommandExecuted }) => {
+      const mockData = result?.body?.data ? result.body.data : 'mock error';
+      setOutput([newOutput, mockData]);
+
+      const commandsLeft = Math.max(0, sharedInitialCommandsLeft - 1);
+      onCommandExecuted(commandsLeft);
+    },
+  ),
+}));
 
 describe('TerminalUI Component', () => {
   it('renders TerminalUI', () => {

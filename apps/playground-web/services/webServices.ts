@@ -1,3 +1,7 @@
+import { MonoSchema } from '@/lib/monoSchema';
+
+import { MonoResponse } from '@/lib/monoResponse';
+
 let PLAYGROUND_MONO_URL = process.env.NEXT_PUBLIC_PLAYGROUND_MONO_URL;
 
 if (!PLAYGROUND_MONO_URL) {
@@ -24,7 +28,10 @@ export const WebService = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: any = null,
     headers: HeadersType,
-  ) => {
+  ): Promise<{
+    headers: { [key: string]: string };
+    body: MonoResponse;
+  }> => {
     const options: RequestOptions = {
       method,
       headers: {
@@ -41,24 +48,45 @@ export const WebService = {
     try {
       const response = await fetch(`${PLAYGROUND_MONO_URL}${url}`, options);
 
-      // If the response is not OK, check if the response contains error information
-      if (!response.ok) {
-        const errorResponse = await response.json();
-        if (errorResponse?.error) {
-          throw errorResponse.error;
-        } else {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-      }
+      const headers: { [key: string]: string } = {};
+      response?.headers?.forEach((value: string, key: string) => {
+        headers[key] = value;
+      });
 
       // Parse the result as JSON
-      const result = await response.json();
-      return result;
+      const body = await response.json();
+      const parsedBody = MonoSchema.safeParse(body);
+      if (!parsedBody.success) {
+        console.error('Invalid response data:', parsedBody.error);
+        return {
+          headers: headers,
+          body: { data: null, error: parsedBody?.error?.message },
+        };
+      }
+
+      if ('data' in parsedBody.data) {
+        return {
+          headers: headers,
+          body: { data: parsedBody?.data?.data, error: null },
+        };
+      } else {
+        return {
+          headers: headers,
+          body: { data: null, error: parsedBody.data.error },
+        };
+      }
     } catch (error) {
       if (error instanceof Error) {
         console.error(`Error with ${method} request: ${error.message}`);
+        return {
+          headers: headers,
+          body: { error: `${error.message}`, data: null },
+        };
       }
-      throw error;
+      return {
+        headers: headers,
+        body: { error: 'Unknown error occurred', data: null },
+      };
     }
   },
 

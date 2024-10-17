@@ -6,9 +6,10 @@ import { useState } from 'react';
 import Tooltip from '../Overlays/Tooltip';
 export function TerminalUI({ initialCommandsLeft = 1000 }) {
   const [commandsLeft, setCommandsLeft] = useState(initialCommandsLeft);
-  const decreaseCommandsLeft = () => {
-    setCommandsLeft((prev) => (prev > 0 ? prev - 1 : 0));
+  const handleCommandExecuted = (commands: number) => {
+    setCommandsLeft(commands);
   };
+
   return (
     <>
       <div className="bg-gray-900 rounded-lg" data-testid="terminal-container">
@@ -23,7 +24,7 @@ export function TerminalUI({ initialCommandsLeft = 1000 }) {
           className="h-64 md:h-[30rem] bg-gray-100 rounded-lg overflow-hidden shadow-md"
           data-testid="shell-container"
         >
-          <Shell decreaseCommandsLeft={decreaseCommandsLeft} />
+          <Shell onCommandExecuted={handleCommandExecuted} />
         </div>
       </div>
       <TerminalCounter commandsLeft={commandsLeft} />
