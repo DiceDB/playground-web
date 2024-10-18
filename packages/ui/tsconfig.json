@@ -2,8 +2,15 @@
   "extends": "@dicedb/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist",
-    "types": ["jest"]
+    "types": [
+      "jest"
+    ]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
